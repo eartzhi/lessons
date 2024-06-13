@@ -8,7 +8,12 @@ def check(df):
 
 calc = pd.read_excel('data/calc.xlsx')
 
-calc['Требуется'] = round(calc['Инфраструктура']*np.random.uniform(1.01, 1.05), 2)
+if calc['Требуется'].isna().any():
+    print('Вычисляем "Требуется"')
+    calc['Требуется'] = round(calc['Инфраструктура']*np.random.uniform(1.01, 1.05), 2)
+else:
+    print('Не вычисляем "Требуется"')
+    
 chamomile=np.random.randint(1, 3)
 while True:
     rand=pd.DataFrame(np.random.uniform(0.85, 1.15, size=calc.shape))
@@ -18,7 +23,7 @@ while True:
     if check(calc):
         break
 
-print(calc['Требуется'].sum())
+print(calc['Требуется'].sum(), '-сумма по "Требуется"')
 calc.loc[ len(calc.index )] = ['Итого', calc['Инфраструктура'].sum(), calc['Требуется'].sum(), calc['Ромашка '+str(chamomile)].sum(), calc['Ромашка '+str(3-chamomile)].sum()]
 
 calc.to_excel('data/result.xlsx', index=False)
