@@ -15,7 +15,9 @@ else:
     print('Не вычисляем "Требуется"')
     
 chamomile=np.random.randint(1, 3)
+n_iter = 0
 while True:
+    n_iter += 1
     rand=pd.DataFrame(np.random.uniform(0.85, 1.15, size=calc.shape))
     calc['Ромашка '+str(chamomile)] = round(calc['Требуется']*rand[0], 2)
     calc['Ромашка '+str(3-chamomile)] = round(3*calc['Требуется']-calc['Ромашка '+str(chamomile)]-calc['Инфраструктура'], 2)
@@ -23,7 +25,9 @@ while True:
     if check(calc):
         break
 
-print(calc['Требуется'].sum(), '-сумма по "Требуется"')
-calc.loc[ len(calc.index )] = ['Итого', calc['Инфраструктура'].sum(), calc['Требуется'].sum(), calc['Ромашка '+str(chamomile)].sum(), calc['Ромашка '+str(3-chamomile)].sum()]
+print(f'{n_iter} итераций')
+print(calc['Требуется'].sum(), '- сумма по "Требуется"')
+
+calc.loc[len(calc.index )] = ['Итого', calc['Инфраструктура'].sum(), calc['Требуется'].sum(), calc['Ромашка '+str(chamomile)].sum(), calc['Ромашка '+str(3-chamomile)].sum()]
 
 calc.to_excel('data/result.xlsx', index=False)
