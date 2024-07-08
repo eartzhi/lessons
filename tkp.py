@@ -20,7 +20,9 @@ while True:
     n_iter += 1
     rand=pd.DataFrame(np.random.uniform(0.70, 1.30, size=calc.shape))
     calc['Ромашка '+str(chamomile)] = round(calc['Требуется']*rand[0], 2)
-    calc['Ромашка '+str(3-chamomile)] = round(3*calc['Требуется']-calc['Ромашка '+str(chamomile)]-calc['Инфраструктура'], 2)
+    calc['Ромашка '+str(3-chamomile)] = round(3*calc['Требуется']
+                                              -calc['Ромашка '+str(chamomile)]
+                                              -calc['Инфраструктура'], 2)
     # result=(calc['Ромашка 1'].sum()+calc['Ромашка 2'].sum()+calc['Инфраструктура'].sum())/3
     if check(calc):
         break
@@ -28,6 +30,9 @@ while True:
 print(f'{n_iter} итераций')
 print(calc['Требуется'].sum(), '- сумма по "Требуется"')
 
-calc.loc[len(calc.index )] = ['Итого', calc['Инфраструктура'].sum(), calc['Требуется'].sum(), calc['Ромашка '+str(chamomile)].sum(), calc['Ромашка '+str(3-chamomile)].sum()]
+calc.loc[len(calc.index )] = ['Итого', calc['Инфраструктура'].sum(), 
+                              calc['Требуется'].sum(), 
+                              calc['Ромашка '+str(chamomile)].sum(), 
+                              calc['Ромашка '+str(3-chamomile)].sum()]
 
 calc.to_excel('data/result.xlsx', index=False)
