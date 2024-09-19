@@ -30,9 +30,10 @@ while True:
 print(f'{n_iter} итераций')
 print(calc['Требуется'].sum(), '- сумма по "Требуется"')
 
-calc.loc[len(calc.index )] = ['Итого', calc['Инфраструктура'].sum(), 
-                              calc['Требуется'].sum(), 
-                              calc['Ромашка '+str(chamomile)].sum(), 
-                              calc['Ромашка '+str(3-chamomile)].sum()]
+calc.loc[-1] = ['Итого', 0, 0, 0, 0]
+
+for i in calc.columns[1:]:
+    calc.loc[-1, i] = calc[i].sum()
+
 
 calc.to_excel('data/result.xlsx', index=False)
