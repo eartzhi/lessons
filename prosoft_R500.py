@@ -31,7 +31,7 @@ input_chanels = [
                 ['RS-485', None, None, None, 10]
                 ]
 output_chanels = [
-                ['AO', '4-20 mA', 'IS', 'NPEXA-KM31', 156], 
+                ['AO', '4-20 mA', 'IS', 'NPEXA-KM31', 100], 
                 ['DO', 'сухой контакт', 'IS', 'NPEXA-K5D11', 60]
                  ]
 
@@ -171,7 +171,6 @@ elif crete_counter > 8:
     add_to_spec(end_module_dict[9][0], controller_cabinet_number, specification)
     add_to_spec(end_module_dict[9][2], controller_cabinet_number, specification)
     add_to_spec(sfp_dict['MM'][0], controller_cabinet_number*4, specification)
-
 else:
     add_to_spec(end_module_dict[8][0], crete_counter, specification)
     add_to_spec(end_module_dict[8][2], crete_counter, specification)    
