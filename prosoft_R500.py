@@ -45,6 +45,9 @@ filled_space = 0
 specification = {}
 module_counter = 0
 crete_counter = 0
+system_count = 0  #new code
+server_tags =  0
+
 
 
 terminal_weigh = 5 + 8  #ширина клеммной сборки
@@ -139,9 +142,11 @@ for signal in chanel_counter.keys():
 if controller_reserve:
     add_module_to_spec('CPU', math.ceil(signals_total/2000)*2, specification)
     module_counter += module_dict['CPU'][3]*2
+    system_count = math.ceil(signals_total/2000)*2 #new code
 else:
     add_module_to_spec('CPU', math.ceil(signals_total/2000), specification)
     module_counter += module_dict['CPU'][3]
+    system_count = math.ceil(signals_total/2000)  #new code
 
 # Модули входов-выходов   
 for signal in chanel_counter.keys():
@@ -151,6 +156,7 @@ for signal in chanel_counter.keys():
         module_counter += module_dict[signal][3] * modules
     else:
         raise TypeError()
+
 
 # Количество крейтов и шкафов
 crete_counter = math.ceil(module_counter/8)
@@ -170,7 +176,7 @@ elif crete_counter > 8:
     add_to_spec(end_module_dict[8][2], inner_module, specification)
     add_to_spec(end_module_dict[9][0], controller_cabinet_number, specification)
     add_to_spec(end_module_dict[9][2], controller_cabinet_number, specification)
-    add_to_spec(sfp_dict['MM'][0], controller_cabinet_number*4, specification)
+    add_to_spec(sfp_dict['MM'][0], controller_cabinet_number*4+4*system_count, specification)   #new code
 else:
     add_to_spec(end_module_dict[8][0], crete_counter, specification)
     add_to_spec(end_module_dict[8][2], crete_counter, specification)    
@@ -180,9 +186,18 @@ for i in range(cross_cabinet_number + controller_cabinet_number):
     for elem, count in cabinet_complect.items():
         add_to_spec(elem, count,  specification)        
     
+# Расчет лицензий Astra.Platform
+
+server_tags = (chanel_counter['AI']+chanel_counter['AO'])*35 + \
+    (chanel_counter['DI']+chanel_counter['DO'])*10 + \
+        (chanel_counter['RS-485']+chanel_counter['ProfiBus'])*50 + \
+            crete_counter*250
+
+historian_tags = chanel_counter['AI']+chanel_counter['AO'] + \
+    chanel_counter['DI']+chanel_counter['DO'] + crete_counter
 
 
-print(specification, '\n', cross_cabinet_number, '\n', chanel_counter, '\n', signals_total, '\n', module_counter)
+print(specification, '\n', cross_cabinet_number, '\n', chanel_counter, '\n', signals_total, '\n', module_counter, server_tags, '\n', historian_tags)
 
 
 
