@@ -188,6 +188,10 @@ for i in range(cross_cabinet_number + controller_cabinet_number):
     
 # Расчет лицензий Astra.Platform
 
+arm_count = 2
+integration_server_count = (1, 2)
+
+
 server_tags = (chanel_counter['AI']+chanel_counter['AO'])*35 + \
     (chanel_counter['DI']+chanel_counter['DO'])*10 + \
         (chanel_counter['RS-485']+chanel_counter['ProfiBus'])*50 + \
