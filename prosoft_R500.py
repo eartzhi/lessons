@@ -187,9 +187,21 @@ for i in range(cross_cabinet_number + controller_cabinet_number):
         add_to_spec(elem, count,  specification)        
     
 # Расчет лицензий Astra.Platform
+pant_client = ['A-CL-F', 125] #наименование,  стоимость
 
-arm_count = 2
-integration_server_count = (1, 2)
+pant_server_list = [['PLN-SRV500', 500, 125], #наименование,  кол-во тэгов, стоимость
+                    ['PLN-SRV1k5', 5000, 126], 
+                    ['PLN-SRV50k', 50000, 211], 
+                    ]
+
+hist_server_list = [['HIST-100', 100, 125],  #наименование,  кол-во тэгов, стоимость
+                    ['HIST-200k', 200000, 126], 
+                    ['HIST-2M', 2000000, 126], 
+                    ]
+
+arm_count = 2 # на выбор пользователю
+integration_server_count = (1, 2) # на выбор пользователю
+historian_server_count = (1, 2) # на выбор пользователю
 
 
 server_tags = (chanel_counter['AI']+chanel_counter['AO'])*35 + \
@@ -199,6 +211,25 @@ server_tags = (chanel_counter['AI']+chanel_counter['AO'])*35 + \
 
 historian_tags = chanel_counter['AI']+chanel_counter['AO'] + \
     chanel_counter['DI']+chanel_counter['DO'] + crete_counter
+    
+#Добавляем клиенты на АРМ
+add_to_spec(pant_client[0], arm_count, specification)
+add_to_spec('A-KEY-USB', arm_count, specification)
+
+#Добавляем ПО на серверы интеграции 
+for element in pant_server_list:
+    if element[1] > server_tags:
+        add_to_spec(element[0], integration_server_count[1], specification)
+        add_to_spec('A-KEY-USB', integration_server_count[1], specification)
+        break
+        
+#Добавляем ПО на серверы истории
+for element in hist_server_list:
+    if element[1] > historian_tags:
+        add_to_spec(element[0], integration_server_count[0], specification)
+        add_to_spec('A-KEY-USB', integration_server_count[0], specification)
+        break
+
 
 
 print(specification, '\n', cross_cabinet_number, '\n', chanel_counter, '\n', signals_total, '\n', module_counter, server_tags, '\n', historian_tags)
