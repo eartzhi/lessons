@@ -3,3 +3,4 @@ lesson_17/.env
 .venv
 project_5/data/Project5_train_data.zip
 project_5/data/osrm_data_train.zip
+math&ml_14/data/dst-3.0_mathml_14_5_rating.csv
