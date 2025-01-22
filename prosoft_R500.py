@@ -50,7 +50,7 @@ server_tags =  0
 
 
 
-terminal_weigh = 5 + 8  #ширина клеммной сборки
+terminal_width = 5 + 8  #ширина клеммной сборки
 
 # input_flags = {'4-20 mA': False, '4-20 mA HART': False, 'RTD': False, 'сухой контакт': False; /
 #                'импульс': False}
@@ -96,11 +96,11 @@ for ch in input_chanels:
         chanel_counter[ch[0]] += capacity
     else:
         if ch[0] == 'DI':
-            filled_space += terminal_weigh/2 * capacity
+            filled_space += terminal_width/2 * capacity
             add_to_spec('KPR-SCE-24VDC-1C', * capacity,  specification)
             chanel_counter[ch[0]] += capacity
         elif ch[0] == 'AI':
-            filled_space += terminal_weigh/2 * capacity
+            filled_space += terminal_width/2 * capacity
             chanel_counter[ch[0]] += capacity
         else:
             chanel_counter[ch[0]] += capacity
@@ -119,11 +119,11 @@ for ch in output_chanels:
             chanel_counter[ch[0]] += capacity
     else:
         if ch[0] == 'DO':
-            filled_space += terminal_weigh/2 * capacity
+            filled_space += terminal_width/2 * capacity
             add_to_spec('KPR-SCE-24VDC-1C', * capacity,  specification)
             chanel_counter[ch[0]] += capacity
         elif ch[0] == 'AO':
-            filled_space += terminal_weigh/2 * capacity
+            filled_space += terminal_width/2 * capacity
             chanel_counter[ch[0]] += capacity
         else:
             raise TypeError()
