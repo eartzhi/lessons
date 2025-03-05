@@ -14,7 +14,7 @@ import plotly.express as px
 # -----------------------------------------------------------------------------------------------------
 # Реализуем функции необходимые для работы приложения
 
-@st.cache
+@st.cache_data 
 def read_files(folder_name='data'):
     """
     Функция для чтения файлов.
@@ -36,7 +36,7 @@ def make_mappers(books):
 
     return name_mapper, author_mapper
 
-def load_embeddings(file_name='item_embeddings.pkl'):
+def load_embeddings(file_name='ml_engeneer/item_embeddings.pkl'):
     """
     Функция для загрузки векторных представлений.
     Возвращает прочитанные эмбеддинги книг и индекс (граф) для поиска похожих книг.
@@ -78,7 +78,7 @@ def get_recomendation_df(ids, distances, name_mapper, author_mapper):
     return recomendation_df
 
 #Загружаем данные
-ratings, books = read_files(folder_name='data') 
+ratings, books = read_files(folder_name='ml_engeneer/data') 
 #Создаем словари для сопоставления id книг и их названий/авторов
 name_mapper, author_mapper = make_mappers(books)
 #Загружаем эмбеддинги и создаем индекс для поиска
