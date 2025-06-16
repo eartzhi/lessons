@@ -1,5 +1,6 @@
 lesson_17/.env
 .vscode
+.conda
 .venv
 project_5/data/Project5_train_data.zip
 project_5/data/osrm_data_train.zip
