@@ -1,0 +1,5 @@
+docker run -d --name prometheus --network my_network -p 9090:9090 -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml -v prometheus-data:/prometheus prom/prometheus
+
+docker run -d --name grafana --network my_network -p 3000:3000 grafana/grafana-enterprise
+
+docker run -d --net="host" --pid="host" -p 9100:9100 --network my_network -v "/:/host:ro,rslave" quay.io/prometheus/node-exporter:latest --path.rootfs=/host
