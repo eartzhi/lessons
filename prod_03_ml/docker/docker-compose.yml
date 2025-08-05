@@ -1,0 +1,47 @@
+services:
+
+  server:
+    restart: unless-stopped
+    command: python project.py
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    networks:
+      my_network:
+        ipv4_address: 172.20.0.3
+    depends_on:
+      - prom
+      - graf
+
+  prom:
+    # Использование готового образа postgres
+    image: prom/prometheus
+    restart: unless-stopped
+    ports:
+      - 9090:9090
+    networks:
+      my_network:
+        ipv4_address: 172.20.0.2
+     # Связывание тома с директорией в контейнере для сохранения данных postgres
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ~/prometheus-data:/prometheus
+
+  graf:
+    # Использование готового образа postgres
+    image: grafana/grafana-enterprise
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      my_network:
+        ipv4_address: 172.20.0.4
+     # Связывание тома с директорией в контейнере для сохранения данных postgres
+    depends_on:
+      - prom
+
+networks:
+  my_network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24 # Define your desired subnet
