@@ -27,3 +27,5 @@ pda_02/data/train.zip
 pda_02/data/PJME_hourly.zip
 ds_add_04/data/properties_2016.csv
 ds_add_05/data/criteo-uplift-v2.1.csv
+real_ml_03/data/favorita-grocery-sales-forecasting.zip
+real_ml_03/data/train.csv
