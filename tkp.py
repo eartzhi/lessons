@@ -6,11 +6,11 @@ def check(df):
     second = df['Инфраструктура'].sum()<df['Ромашка 2'].sum()
     return first and second
 
-calc = pd.read_excel('data/calc.xlsx')
+calc = pd.read_excel('data/Ромашки 24 на 7.xlsx')
 
 if calc['Требуется'].isna().any():
     print('Вычисляем "Требуется"')
-    calc['Требуется'] = round(calc['Инфраструктура']*np.random.uniform(1.01, 1.05), 2)
+    calc['Требуется'] = round(calc['Инфраструктура']*np.random.uniform(1.01, 1.10), 2)
 else:
     print('Не вычисляем "Требуется"')
     
