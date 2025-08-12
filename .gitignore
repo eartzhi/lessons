@@ -29,3 +29,7 @@ ds_add_04/data/properties_2016.csv
 ds_add_05/data/criteo-uplift-v2.1.csv
 real_ml_03/data/favorita-grocery-sales-forecasting.zip
 real_ml_03/data/train.csv
+final_project/data/category_tree.csv
+final_project/data/events.csv.zip
+final_project/data/item_properties_part1.csv
+final_project/data/item_properties_part2.csv
