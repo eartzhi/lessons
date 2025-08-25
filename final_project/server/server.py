@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 from flask import Flask, jsonify, abort, make_response, request
 from core import matching
 
@@ -43,6 +46,7 @@ def not_found(error):
 
 if __name__ == '__main__':
     app.run(debug=True)
+<<<<<<< HEAD
 =======
 from flask import Flask
 
@@ -55,3 +59,5 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True)
 >>>>>>> 26d9976 (server)
+=======
+>>>>>>> origin/main
