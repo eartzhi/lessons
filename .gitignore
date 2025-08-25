@@ -33,3 +33,16 @@ final_project/data/category_tree.csv
 final_project/data/events.csv.zip
 final_project/data/item_properties_part1.csv
 final_project/data/item_properties_part2.csv
+final_project/fact_pivot.pickle
+final_project/collab_dataset.pickle
+final_project/collab_model.pickle
+final_project/fact_model.pickle
+final_project/xboost_users.pickle
+final_project/xboost_model.pickle
+final_project/xboost_items.pickle
+final_project/server/data/xboost_items.pickle
+data/collab_model.pickle
+data/xboost_items.pickle
+final_project/server/__pycache__/core.cpython-311.pyc
+final_project/server/data/collab_model.pickle
+final_project/server/data/xboost_users.pickle
